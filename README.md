@@ -1,1 +1,1 @@
-# teche-os
+# techedash

@@ -1,0 +1,55 @@
+Arin: name
+ 
+src/tools/config/getFallbackConfig.ts
+src/tools/server/sdk/plex/plexClient.test.ts
+src/widgets/bookmark/BookmarkWidgetTile.tsx
+src/widgets/notebook/NotebookWidgetTile.tsx
+src/components/layout/Common/Logo.tsx
+src/server/openai.ts
+src/pages/auth/login.tsx
+src/pages/manage/tools/swagger.tsx
+src/pages/onboard.tsx
+data/default.json
+data/configs/default.json
+public/locales/en/tools/docker.json
+public/locales/en/layout/modals/about.json
+public/locales/en/layout/element-selector/selector.json
+public/locales/en/manage/users.json
+public/locales/en/manage/users/invites.json
+SECURITY.md
+.github/ISSUE_TEMPLATE/bug.yml
+.github/pull_request_template.md
+src/tools/shared/app.ts
+src/widgets/bookmark/BookmarkWidgetTile.tsx
+src/components/layout/Templates/ManageLayout.tsx
+src/server/openai.ts
+src/widgets/WidgetWrapper.tsx
+src/components/Dashboard/Tiles/HomarrCardWrapper.tsx
+src/components/Dashboard/Tiles/Apps/AppTile.tsx
+src/components/Dashboard/Tiles/EmptyTile.tsx
+src/components/Manage/Tools/Docker/ContainerActionBar.tsx
+src/components/layout/Meta/CommonHead.tsx
+src/components/layout/Common/Logo.tsx
+src/components/Onboarding/database-not-writeable.tsx
+src/components/Onboarding/step-onboarding-finished.tsx
+src/components/Onboarding/step-update-path-mappings.tsx
+src/server/api/routers/media-server.ts
+ 
+ 
+Logo
+C:\Users\Mukesh\Downloads\Scripts_OK\imgs\favicon\favicon.svg
+C:\Users\Mukesh\Downloads\Scripts_OK\imgs\favicon\favicon.png
+C:\Users\Mukesh\Downloads\Scripts_OK\imgs\logo\openteche.svg
+ 
+color code
+#366a6c
+src/styles/global.scss
+src/components/layout/Background/FloatingBackground.tsx
+arin: #2596be
+ 
+ 
+  421  cat src/styles/global.scss | grep "#366a6c"
+  422  sed -i 's/#366a6c/#2596be/g' src/styles/global.scss
+  423  cat src/styles/global.scss | grep "#366a6c"
+  424  cat src/styles/global.scss | grep "#2596be"
+  425  sed -i 's/#366a6c/#2596be/g' src/components/layout/Background/FloatingBackground.tsx
