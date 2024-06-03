@@ -1,0 +1,422 @@
+[
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "rsyncd",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "rsyncd"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Rsync - Server"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "auth",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "auth"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Authentication"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "daemon",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "daemon"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Daemon"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "rsync",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "rsync"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Rsync - Jobs"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "boot",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "boot"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Boot"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "hidden": true,
+        "name": "Hostname",
+        "prop": "hostname",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "name": "User name",
+        "prop": "username",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "name": "Client address",
+        "prop": "clientipaddr",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "hidden": true,
+        "name": "Client NetBIOS name",
+        "prop": "clientnetbiosname",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "hidden": true,
+        "name": "Shared folder path",
+        "prop": "servicerootdir",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "name": "Shared folder name",
+        "prop": "servicename",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "hidden": true,
+        "name": "File path",
+        "prop": "filepath",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "name": "Filename",
+        "prop": "filename",
+        "sortable": true
+      },
+      {
+        "flexGrow": 1,
+        "name": "Operation",
+        "prop": "operation"
+      },
+      {
+        "cellTemplateName": "checkIcon",
+        "flexGrow": 1,
+        "name": "Result",
+        "prop": "result",
+        "sortable": true
+      }
+    ],
+    "id": "smbdaudit",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "smbdaudit"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "SMB/CIFS - Audit"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "messages",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "messages"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Messages"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "dmesg",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "dmesg"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Kernel"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "smartd",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "smartd"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "S.M.A.R.T."
+  },
+  {
+    "columns": [
+      {
+        "flexGrow": 1,
+        "hidden": true,
+        "name": "Row No.",
+        "prop": "rownum",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "apt_term",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "apt_term"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "rownum"
+      }
+    ],
+    "text": "Update Management"
+  },
+  {
+    "columns": [
+      {
+        "cellTemplateName": "localeDateTime",
+        "flexGrow": 1,
+        "name": "Date & Time",
+        "prop": "ts",
+        "sortable": true
+      },
+      {
+        "cellTemplateName": "text",
+        "flexGrow": 2,
+        "name": "Message",
+        "prop": "message",
+        "sortable": true
+      }
+    ],
+    "id": "syslog",
+    "request": {
+      "method": "getList",
+      "params": {
+        "id": "syslog"
+      },
+      "service": "LogFile"
+    },
+    "sorters": [
+      {
+        "dir": "desc",
+        "prop": "ts"
+      }
+    ],
+    "text": "Syslog"
+  }
+]

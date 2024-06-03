@@ -1,0 +1,26 @@
+[
+  {
+    "text": "EXT4",
+    "url": "/storage/filesystems/ext4/create"
+  },
+  {
+    "text": "BTRFS",
+    "url": "/storage/filesystems/btrfs/create"
+  },
+  {
+    "text": "EXT3",
+    "url": "/storage/filesystems/ext3/create"
+  },
+  {
+    "text": "JFS",
+    "url": "/storage/filesystems/jfs/create"
+  },
+  {
+    "text": "XFS",
+    "url": "/storage/filesystems/xfs/create"
+  },
+  {
+    "text": "F2FS",
+    "url": "/storage/filesystems/f2fs/create"
+  }
+]

@@ -1,0 +1,530 @@
+[
+  {
+    "icon": "mdi:file-tree",
+    "path": "storage.filesystems",
+    "position": 40,
+    "text": "File Systems",
+    "url": "/storage/filesystems"
+  },
+  {
+    "icon": "mdi:format-list-numbered",
+    "path": "network.firewall.rules",
+    "position": 10,
+    "text": "Rules",
+    "url": "/network/firewall/rules"
+  },
+  {
+    "icon": "mdi:folder-network",
+    "path": "services.nfs",
+    "text": "NFS",
+    "url": "/services/nfs"
+  },
+  {
+    "icon": "share",
+    "path": "services.rsync.server.modules",
+    "position": 20,
+    "text": "Modules",
+    "url": "/services/rsync/server/modules"
+  },
+  {
+    "icon": "mdi:lan-connect",
+    "path": "services.rsync.server",
+    "position": 20,
+    "text": "Server",
+    "url": "/services/rsync/server"
+  },
+  {
+    "icon": "email",
+    "path": "system.notification",
+    "position": 30,
+    "text": "Notification",
+    "url": "/system/notification"
+  },
+  {
+    "icon": "tune",
+    "path": "services.nfs.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/services/nfs/settings"
+  },
+  {
+    "icon": "share",
+    "path": "services.nfs.shares",
+    "position": 20,
+    "text": "Shares",
+    "url": "/services/nfs/shares"
+  },
+  {
+    "icon": "mdi:memory",
+    "path": "diagnostics.performance-statistics.memory",
+    "text": "Memory Usage",
+    "url": "/diagnostics/performance-statistics/memory"
+  },
+  {
+    "icon": "mdi:power-plug-outline",
+    "path": "system.omvextras",
+    "text": "omv-extras",
+    "url": "/system/omvextras"
+  },
+  {
+    "icon": "mdi:chart-line",
+    "path": "diagnostics.performance-statistics",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "text": "Performance Statistics",
+    "url": "/diagnostics/performance-statistics"
+  },
+  {
+    "icon": "harddisk",
+    "path": "storage.smart.devices",
+    "position": 20,
+    "text": "Devices",
+    "url": "/storage/smart/devices"
+  },
+  {
+    "icon": "ssh",
+    "path": "services.ssh",
+    "text": "SSH",
+    "url": "/services/ssh"
+  },
+  {
+    "icon": "group",
+    "path": "usermgmt.groups",
+    "position": 30,
+    "text": "Groups",
+    "url": "/usermgmt/groups"
+  },
+  {
+    "icon": "apps",
+    "path": "dashboard",
+    "position": 10,
+    "text": "Dashboard",
+    "url": "/dashboard"
+  },
+  {
+    "icon": "mdi:shield-half-full",
+    "path": "network.firewall",
+    "position": 40,
+    "text": "Firewall",
+    "url": "/network/firewall"
+  },
+  {
+    "icon": "network",
+    "path": "network",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 30,
+    "text": "Network",
+    "url": "/network"
+  },
+  {
+    "icon": "mdi:download",
+    "path": "system.updatemgmt",
+    "position": 70,
+    "text": "Update Management",
+    "url": "/system/updatemgmt"
+  },
+  {
+    "icon": "tune",
+    "path": "diagnostics.system-logs.remote",
+    "position": 20,
+    "text": "Remote",
+    "url": "/diagnostics/system-logs/remote"
+  },
+  {
+    "icon": "mdi:cpu-64-bit",
+    "path": "diagnostics.performance-statistics.cpu",
+    "text": "CPU",
+    "url": "/diagnostics/performance-statistics/cpu"
+  },
+  {
+    "icon": "mdi:pulse",
+    "path": "storage.smart",
+    "position": 20,
+    "text": "S.M.A.R.T.",
+    "url": "/storage/smart"
+  },
+  {
+    "icon": "ssh",
+    "path": "system.certificate.ssh",
+    "position": 10,
+    "text": "SSH",
+    "url": "/system/certificate/ssh"
+  },
+  {
+    "icon": "users",
+    "path": "usermgmt",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 60,
+    "text": "Users",
+    "url": "/usermgmt"
+  },
+  {
+    "icon": "share",
+    "path": "services.smb.shares",
+    "position": 20,
+    "text": "Shares",
+    "url": "/services/smb/shares"
+  },
+  {
+    "icon": "bell",
+    "path": "system.notification.events",
+    "position": 20,
+    "text": "Events",
+    "url": "/system/notification/events"
+  },
+  {
+    "icon": "laptop",
+    "path": "system",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 20,
+    "text": "System",
+    "url": "/system"
+  },
+  {
+    "icon": "mdi:file-document-edit",
+    "path": "diagnostics.system-logs.logs",
+    "position": 10,
+    "text": "Logs",
+    "url": "/diagnostics/system-logs/logs"
+  },
+  {
+    "icon": "mdi:speedometer",
+    "path": "diagnostics.performance-statistics.load",
+    "text": "Load Average",
+    "url": "/diagnostics/performance-statistics/load"
+  },
+  {
+    "icon": "mdi:calendar-clock",
+    "path": "storage.smart.tasks",
+    "position": 30,
+    "text": "Scheduled Tasks",
+    "url": "/storage/smart/tasks"
+  },
+  {
+    "icon": "mdi:lan-connect",
+    "path": "services.rsync",
+    "text": "Rsync",
+    "url": "/services/rsync"
+  },
+  {
+    "icon": "mdi:router-network",
+    "path": "network.proxy",
+    "position": 30,
+    "text": "Proxy",
+    "url": "/network/proxy"
+  },
+  {
+    "icon": "ssh",
+    "path": "diagnostics.services.ssh",
+    "text": "SSH",
+    "url": "/diagnostics/services/ssh"
+  },
+  {
+    "icon": "harddisk",
+    "path": "storage.disks",
+    "position": 10,
+    "text": "Disks",
+    "url": "/storage/disks"
+  },
+  {
+    "icon": "tune",
+    "path": "system.powermgmt.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/system/powermgmt/settings"
+  },
+  {
+    "icon": "cogs",
+    "path": "diagnostics.processes",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 30,
+    "text": "Processes",
+    "url": "/diagnostics/processes"
+  },
+  {
+    "icon": "smb",
+    "path": "services.smb",
+    "text": "SMB/CIFS",
+    "url": "/services/smb"
+  },
+  {
+    "icon": "mdi:download",
+    "path": "system.updatemgmt.updates",
+    "position": 10,
+    "text": "Updates",
+    "url": "/system/updatemgmt/updates"
+  },
+  {
+    "icon": "tune",
+    "path": "system.notification.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/system/notification/settings"
+  },
+  {
+    "icon": "share",
+    "path": "diagnostics.services",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 40,
+    "text": "Services",
+    "url": "/diagnostics/services"
+  },
+  {
+    "icon": "tune",
+    "path": "usermgmt.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/usermgmt/settings"
+  },
+  {
+    "icon": "network",
+    "path": "diagnostics.performance-statistics.network-interfaces",
+    "text": "Network Interfaces",
+    "url": "/diagnostics/performance-statistics/network-interfaces"
+  },
+  {
+    "icon": "clock",
+    "path": "system.datetime",
+    "position": 20,
+    "text": "Date & Time",
+    "url": "/system/date-time"
+  },
+  {
+    "icon": "mdi:calendar-clock",
+    "path": "services.rsync.tasks",
+    "position": 10,
+    "text": "Tasks",
+    "url": "/services/rsync/tasks"
+  },
+  {
+    "icon": "mdi:file-document-edit",
+    "path": "diagnostics.system-logs",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 20,
+    "text": "System Logs",
+    "url": "/diagnostics/system-logs"
+  },
+  {
+    "icon": "ssl",
+    "path": "system.certificate.ssl",
+    "position": 20,
+    "text": "SSL",
+    "url": "/system/certificate/ssl"
+  },
+  {
+    "icon": "information",
+    "path": "diagnostics.system-information",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 10,
+    "text": "System Information",
+    "url": "/diagnostics/system-information"
+  },
+  {
+    "icon": "mdi:flash-outline",
+    "path": "services.flashmemory",
+    "text": "Flashmemory",
+    "url": "/services/flashmemory"
+  },
+  {
+    "icon": "tune",
+    "path": "system.workbench",
+    "position": 10,
+    "text": "Workbench",
+    "url": "/system/workbench"
+  },
+  {
+    "icon": "plugin",
+    "path": "system.plugins",
+    "position": 80,
+    "text": "Plugins",
+    "url": "/system/plugins"
+  },
+  {
+    "icon": "mdi:text",
+    "path": "diagnostics.report",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 60,
+    "text": "Report",
+    "url": "/diagnostics/report"
+  },
+  {
+    "icon": "mdi:calendar-clock",
+    "path": "system.powermgmt.tasks",
+    "position": 20,
+    "text": "Scheduled Tasks",
+    "url": "/system/powermgmt/tasks"
+  },
+  {
+    "icon": "share",
+    "path": "storage.shared-folders",
+    "position": 90,
+    "text": "Shared Folders",
+    "url": "/storage/shared-folders"
+  },
+  {
+    "icon": "tune",
+    "path": "services.rsync.server.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/services/rsync/server/settings"
+  },
+  {
+    "icon": "tune",
+    "path": "system.updatemgmt.settings",
+    "position": 20,
+    "text": "Settings",
+    "url": "/system/updatemgmt/settings"
+  },
+  {
+    "icon": "user",
+    "path": "usermgmt.users",
+    "position": 20,
+    "text": "Users",
+    "url": "/usermgmt/users"
+  },
+  {
+    "icon": "share",
+    "path": "services",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 50,
+    "text": "Services",
+    "url": "/services"
+  },
+  {
+    "icon": "harddisk",
+    "path": "diagnostics.performance-statistics.diskusage",
+    "text": "Disk Usage",
+    "url": "/diagnostics/performance-statistics/disk-usage"
+  },
+  {
+    "icon": "tune",
+    "path": "services.smb.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/services/smb/settings"
+  },
+  {
+    "icon": "mdi:certificate",
+    "path": "system.certificate",
+    "position": 70,
+    "text": "Certificates",
+    "url": "/system/certificate"
+  },
+  {
+    "icon": "mdi:calendar-clock",
+    "path": "system.cron",
+    "position": 60,
+    "text": "Scheduled Tasks",
+    "url": "/system/cron"
+  },
+  {
+    "icon": "nas",
+    "path": "storage",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 40,
+    "text": "Storage",
+    "url": "/storage"
+  },
+  {
+    "icon": "tune",
+    "path": "storage.smart.settings",
+    "position": 10,
+    "text": "Settings",
+    "url": "/storage/smart/settings"
+  },
+  {
+    "icon": "mdi:expansion-card",
+    "path": "network.interfaces",
+    "position": 20,
+    "text": "Interfaces",
+    "url": "/network/interfaces"
+  },
+  {
+    "icon": "heartPulse",
+    "path": "diagnostics",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "position": 70,
+    "text": "Diagnostics",
+    "url": "/diagnostics"
+  },
+  {
+    "icon": "smb",
+    "path": "diagnostics.services.smb",
+    "text": "SMB/CIFS",
+    "url": "/diagnostics/services/smb"
+  },
+  {
+    "icon": "mdi:battery-medium",
+    "path": "system.powermgmt",
+    "position": 40,
+    "text": "Power Management",
+    "url": "/system/powermgmt"
+  },
+  {
+    "icon": "mdi:timer-outline",
+    "path": "diagnostics.performance-statistics.uptime",
+    "text": "Uptime",
+    "url": "/diagnostics/performance-statistics/uptime"
+  },
+  {
+    "icon": "tune",
+    "path": "network.general",
+    "position": 10,
+    "text": "General",
+    "url": "/network/general"
+  },
+  {
+    "icon": "heartPulse",
+    "path": "system.monitoring",
+    "position": 50,
+    "text": "Monitoring",
+    "url": "/system/monitoring"
+  }
+]

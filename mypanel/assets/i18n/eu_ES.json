@@ -1,0 +1,11 @@
+{
+  "%d days": "%d egun",
+  "%d hours": "%d ordu",
+  "%d minutes": "%d minutu",
+  "%d months": "%d hilabete",
+  "%d years": "%d urte",
+  "%s [%s, %s (%d%%) used, %s available]": "%s [%s, %s (%d%%) erabilita, %s erabilgarri]",
+  "%s [%s]": "%s [%s]",
+  "%s [on %s, %s]": "%s [hemen: %s, %s]",
+  "%s ago": "Duela %s"
+}

@@ -1,0 +1,818 @@
+[
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/system/omvextras"
+            },
+            "template": "cancel"
+          },
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "clean",
+                    "service": "OmvExtras"
+                  },
+                  "startOnInit": true,
+                  "title": "Cleaning apt ..."
+                },
+                "successUrl": "/system/omvextras"
+              },
+              "type": "taskDialog"
+            },
+            "text": "apt clean"
+          },
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "backports",
+                    "params": {
+                      "backports": "YES"
+                    },
+                    "service": "OmvExtras"
+                  },
+                  "startOnInit": true,
+                  "title": "Enabling backports ..."
+                },
+                "successUrl": "/system/omvextras"
+              },
+              "type": "taskDialog"
+            },
+            "text": "Enable backports"
+          },
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "backports",
+                    "params": {
+                      "backports": "NO"
+                    },
+                    "service": "OmvExtras"
+                  },
+                  "startOnInit": true,
+                  "title": "Disabling backports ..."
+                },
+                "successUrl": "/system/omvextras"
+              },
+              "type": "taskDialog"
+            },
+            "text": "Disable backports"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/externalRedirect/https%3A%2F%2Fwiki.omv-extras.org%2Fdoku.php%3Fid%3Domv6%3Aomv6_plugins%3Aomv-extras"
+            },
+            "text": "Wiki"
+          }
+        ],
+        "fields": [
+          {
+            "hint": "Please install the openmediavault-compose to provide docker functionality within the OMV web interface.",
+            "label": "Docker repo",
+            "name": "docker",
+            "type": "checkbox",
+            "value": false
+          }
+        ],
+        "request": {
+          "get": {
+            "method": "get"
+          },
+          "post": {
+            "method": "set"
+          },
+          "service": "OmvExtras"
+        }
+      },
+      "type": "formPage"
+    },
+    "editing": true,
+    "notificationTitle": "Updated omv-extras settings.",
+    "title": "omv-extras",
+    "url": "/system/omvextras"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "create",
+                    "params": {
+                      "devicefile": "{{ devicefile }}",
+                      "type": "{{ _routeUrlSegments | reverse | get(1) }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "{{ _routeUrlSegments | reverse | get(1) | upper }}"
+          },
+          {
+            "hint": "Select the device that will be used to create the file system.",
+            "label": "Device",
+            "name": "devicefile",
+            "placeholder": "Select a device ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/ext3/create"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "create",
+                    "params": {
+                      "devicefile": "{{ devicefile }}",
+                      "type": "{{ _routeUrlSegments | reverse | get(1) }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "{{ _routeUrlSegments | reverse | get(1) | upper }}"
+          },
+          {
+            "hint": "Select the device that will be used to create the file system.",
+            "label": "Device",
+            "name": "devicefile",
+            "placeholder": "Select a device ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/xfs/create"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "create",
+                    "params": {
+                      "devicefile": "{{ devicefile }}",
+                      "type": "{{ _routeUrlSegments | reverse | get(1) }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "{{ _routeUrlSegments | reverse | get(1) | upper }}"
+          },
+          {
+            "hint": "Select the device that will be used to create the file system.",
+            "label": "Device",
+            "name": "devicefile",
+            "placeholder": "Select a device ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/jfs/create"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "create",
+                    "params": {
+                      "devicefile": "{{ devicefile }}",
+                      "type": "{{ _routeUrlSegments | reverse | get(1) }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "{{ _routeUrlSegments | reverse | get(1) | upper }}"
+          },
+          {
+            "hint": "Select the device that will be used to create the file system.",
+            "label": "Device",
+            "name": "devicefile",
+            "placeholder": "Select a device ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/f2fs/create"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "createBtrfs",
+                    "params": {
+                      "devicefiles": "{{ devicefiles }}",
+                      "profile": "{{ profile }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "BTRFS"
+          },
+          {
+            "label": "Profile",
+            "name": "profile",
+            "store": {
+              "data": [
+                [
+                  "single",
+                  "Single"
+                ],
+                [
+                  "dup",
+                  "DUP"
+                ],
+                [
+                  "raid0",
+                  "RAID0"
+                ],
+                [
+                  "raid1",
+                  "RAID1"
+                ],
+                [
+                  "raid10",
+                  "RAID10"
+                ]
+              ]
+            },
+            "type": "select",
+            "value": "raid0"
+          },
+          {
+            "hint": "Select the devices that will be used to create the file system.",
+            "label": "Devices",
+            "multiple": true,
+            "name": "devicefiles",
+            "placeholder": "Select devices ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "custom": [
+                {
+                  "constraint": {
+                    "arg0": {
+                      "arg0": {
+                        "prop": "profile"
+                      },
+                      "arg1": [
+                        "single",
+                        "dup"
+                      ],
+                      "operator": "in"
+                    },
+                    "arg1": {
+                      "arg0": {
+                        "arg0": {
+                          "prop": "devicefiles"
+                        },
+                        "operator": "length"
+                      },
+                      "arg1": 1,
+                      "operator": ">="
+                    },
+                    "operator": "if"
+                  },
+                  "errorData": "At least one device is required."
+                },
+                {
+                  "constraint": {
+                    "arg0": {
+                      "arg0": {
+                        "prop": "profile"
+                      },
+                      "arg1": [
+                        "raid0",
+                        "raid1"
+                      ],
+                      "operator": "in"
+                    },
+                    "arg1": {
+                      "arg0": {
+                        "arg0": {
+                          "prop": "devicefiles"
+                        },
+                        "operator": "length"
+                      },
+                      "arg1": 2,
+                      "operator": ">="
+                    },
+                    "operator": "if"
+                  },
+                  "errorData": "At least two devices are required."
+                },
+                {
+                  "constraint": {
+                    "arg0": {
+                      "arg0": {
+                        "prop": "profile"
+                      },
+                      "arg1": "raid10",
+                      "operator": "eq"
+                    },
+                    "arg1": {
+                      "arg0": {
+                        "arg0": {
+                          "prop": "devicefiles"
+                        },
+                        "operator": "length"
+                      },
+                      "arg1": 4,
+                      "operator": ">="
+                    },
+                    "operator": "if"
+                  },
+                  "errorData": "At least four devices are required."
+                }
+              ],
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/btrfs/create"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "syncall",
+                    "service": "Flashmemory"
+                  },
+                  "startOnInit": true,
+                  "title": "Sync the content of folder2ram's tmpfs folders to disk ..."
+                }
+              },
+              "type": "taskDialog"
+            },
+            "text": "Sync all"
+          }
+        ],
+        "fields": [
+          {
+            "label": "Status",
+            "name": "status",
+            "readonly": true,
+            "type": "textInput",
+            "value": ""
+          }
+        ],
+        "request": {
+          "get": {
+            "method": "get"
+          },
+          "service": "Flashmemory"
+        }
+      },
+      "type": "formPage"
+    },
+    "editing": true,
+    "title": "Flashmemory",
+    "url": "/services/flashmemory"
+  },
+  {
+    "component": {
+      "config": {
+        "buttons": [
+          {
+            "execute": {
+              "taskDialog": {
+                "config": {
+                  "buttons": {
+                    "stop": {
+                      "hidden": true
+                    }
+                  },
+                  "request": {
+                    "method": "create",
+                    "params": {
+                      "devicefile": "{{ devicefile }}",
+                      "type": "{{ _routeUrlSegments | reverse | get(1) }}"
+                    },
+                    "service": "FileSystemMgmt"
+                  },
+                  "startOnInit": true,
+                  "title": "Create file system",
+                  "width": "75%"
+                },
+                "successUrl": "/storage/filesystems/mount"
+              },
+              "type": "taskDialog"
+            },
+            "template": "submit"
+          },
+          {
+            "execute": {
+              "type": "url",
+              "url": "/storage/filesystems"
+            },
+            "template": "cancel"
+          }
+        ],
+        "fields": [
+          {
+            "disabled": true,
+            "label": "Type",
+            "name": "type",
+            "submitValue": false,
+            "type": "textInput",
+            "value": "{{ _routeUrlSegments | reverse | get(1) | upper }}"
+          },
+          {
+            "hint": "Select the device that will be used to create the file system.",
+            "label": "Device",
+            "name": "devicefile",
+            "placeholder": "Select a device ...",
+            "store": {
+              "proxy": {
+                "get": {
+                  "method": "getCandidatesBg",
+                  "task": true
+                },
+                "service": "FileSystemMgmt"
+              },
+              "sorters": [
+                {
+                  "dir": "asc",
+                  "prop": "devicefile"
+                }
+              ]
+            },
+            "textField": "description",
+            "type": "select",
+            "validators": {
+              "required": true
+            },
+            "valueField": "devicefile"
+          }
+        ],
+        "hints": [
+          {
+            "dismissible": true,
+            "stateId": "199e8c7a-ee3b-11ed-9fb1-2750842abc68",
+            "text": "If a device is not listed here, it is usually because the device already contains a file system or partitions. With the former, the file system can be mounted <a href='#/storage/filesystems/mount'>here<a>. For the latter, please <a href='#/storage/disks'>wipe<a> the device as partitions are not supported.",
+            "type": "info"
+          }
+        ]
+      },
+      "type": "formPage"
+    },
+    "title": "Create",
+    "url": "/storage/filesystems/ext4/create"
+  }
+]

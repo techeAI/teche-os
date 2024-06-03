@@ -1,0 +1,594 @@
+[
+  {
+    "chart": {
+      "dataConfig": [
+        {
+          "backgroundColor": "#ff9d00",
+          "label": "1 min",
+          "prop": "loadAverage.1min"
+        },
+        {
+          "backgroundColor": "#bc5090",
+          "label": "5 min",
+          "prop": "loadAverage.5min"
+        },
+        {
+          "backgroundColor": "#5dacdf",
+          "label": "15 min",
+          "prop": "loadAverage.15min"
+        }
+      ],
+      "label": {
+        "formatter": "template",
+        "formatterConfig": "{{ value | tofixed(2) }}"
+      },
+      "maxHeight": "150px",
+      "maxWidth": "150px",
+      "request": {
+        "method": "getInformation",
+        "service": "System"
+      },
+      "type": "advanced-gauge"
+    },
+    "id": "87c5224a-8ae2-11eb-8be3-1f259589acaf",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "title": "Load Average",
+    "type": "chart"
+  },
+  {
+    "description": "Displays the S.M.A.R.T. status of all monitored disk devices.",
+    "grid": {
+      "emptyMessage": "No monitored devices.",
+      "item": {
+        "class": "omv-cursor-pointer omv-text-center omv-text-nowrap {% set overallStatusColor = { \"BAD_ATTRIBUTE_NOW\": \"omv-background-color-pair-error\", \"BAD_ATTRIBUTE_IN_THE_PAST\": \"omv-background-color-pair-error\", \"BAD_SECTOR_MANY\": \"omv-background-color-pair-error\", \"BAD_SECTOR\": \"omv-background-color-pair-warning\", \"BAD_STATUS\": \"omv-background-color-pair-gray\", \"GOOD\": \"omv-background-color-pair-success\" } %}{{ overallStatusColor[overallstatus] }}",
+        "content": "{{ canonicaldevicefile }}",
+        "tooltip": "{% set overallStatusText = { \"GOOD\": \"Good\", \"BAD_STATUS\": \"Unknown\", \"BAD_ATTRIBUTE_NOW\": \"Device is being used outside design parameters.\", \"BAD_ATTRIBUTE_IN_THE_PAST\": \"Device was used outside of design parameters in the past.\", \"BAD_SECTOR\": \"Device has a few bad sectors.\", \"BAD_SECTOR_MANY\": \"Device has many bad sectors.\" } %}{{ overallStatusText[overallstatus] | translate }}",
+        "url": "/storage/smart/devices/details/{{ devicefile | encodeuricomponent }}"
+      },
+      "store": {
+        "filters": [
+          {
+            "arg0": {
+              "prop": "monitor"
+            },
+            "operator": "truthy"
+          }
+        ],
+        "proxy": {
+          "get": {
+            "method": "getListBg",
+            "params": {
+              "limit": -1,
+              "start": 0
+            },
+            "task": true
+          },
+          "service": "Smart"
+        },
+        "sorters": [
+          {
+            "dir": "asc",
+            "prop": "devicefile"
+          }
+        ]
+      }
+    },
+    "id": "2f06f7e5-b34f-47f7-a953-5eba2f386139",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 60000,
+    "title": "S.M.A.R.T. Status",
+    "type": "grid"
+  },
+  {
+    "description": "Displays information about the network interfaces in a grid.",
+    "grid": {
+      "item": {
+        "class": "omv-color-text {% if link %}omv-background-color-pair-success{% else %}omv-background-color-selected-button{% endif %}",
+        "content": "{{ address | default(\"-\", true) }}{% if address %}/{{ prefix }}{% endif %}<br>{{ address6 | default(\"-\", true) }}{% if address6 %}/{{ prefix6 }}{% endif %}",
+        "contentClass": "omv-text-truncate omv-font-size-small",
+        "minWidth": "180px",
+        "title": "{{ devicename }}",
+        "titleClass": "omv-text-truncate",
+        "tooltip": "{{ \"Address\" | translate }}:<br>{{ address | default(\"-\", true) }}{% if address %}/{{ prefix }}{% endif %}<br>{{ address6 | default(\"-\", true) }}{% if address6 %}/{{ prefix6 }}{% endif %}<br>{{ \"Gateway\" | translate }}:<br>{{ gateway | default(\"-\", true) }}<br>{{ gateway6 | default(\"-\", true) }}<br>MTU: {{ mtu | default(\"-\", true) }}<br>{{ \"State\" | translate }}: {{ state }}"
+      },
+      "store": {
+        "filters": [
+          {
+            "arg0": {
+              "prop": "devicename"
+            },
+            "arg1": "lo",
+            "operator": "ne"
+          }
+        ],
+        "proxy": {
+          "get": {
+            "method": "enumerateDevicesList",
+            "params": {
+              "limit": -1,
+              "start": 0
+            }
+          },
+          "service": "Network"
+        },
+        "sorters": [
+          {
+            "dir": "asc",
+            "prop": "devicefile"
+          }
+        ]
+      }
+    },
+    "id": "860b55ef-a4fd-4fc8-8153-b79bdf0bbc2a",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 10000,
+    "title": "Network Interfaces",
+    "type": "grid"
+  },
+  {
+    "description": "Displays various system information.",
+    "id": "bb8fa1b6-df13-11ea-9ef7-933dec0aeaf3",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 5000,
+    "title": "System Information",
+    "type": "system-information"
+  },
+  {
+    "description": "Displays information about the file systems in a grid.",
+    "id": "0f64ac92-8bde-11eb-9a6a-fbacf67258dc",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 10000,
+    "title": "File Systems",
+    "type": "filesystems-status"
+  },
+  {
+    "datatable": {
+      "columns": [
+        {
+          "flexGrow": 1,
+          "name": "Device",
+          "prop": "devicename",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": "IPv4: {{ address | default(\"-\", true) }}{% if address %}/{{ prefix }}{% endif %}<br>IPv6: {{ address6 | default(\"-\", true) }}{% if address6 %}/{{ prefix6 }}{% endif %}",
+          "cellTemplateName": "template",
+          "flexGrow": 1,
+          "name": "Address",
+          "prop": "address",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": "IPv4: {{ netmask | default(\"-\", true) }}<br>IPv6: {{ netmask6 | replace(\"-1\", \"\") | default(\"-\", true) }}",
+          "cellTemplateName": "template",
+          "flexGrow": 1,
+          "hidden": true,
+          "name": "Netmask",
+          "prop": "netmask",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": "IPv4: {{ gateway | default(\"-\", true) }}<br>IPv6: {{ gateway6 | default(\"-\", true) }}",
+          "cellTemplateName": "template",
+          "flexGrow": 1,
+          "name": "Gateway",
+          "prop": "gateway",
+          "sortable": true
+        },
+        {
+          "flexGrow": 1,
+          "hidden": true,
+          "name": "MAC",
+          "prop": "ether",
+          "sortable": true
+        },
+        {
+          "flexGrow": 1,
+          "name": "MTU",
+          "prop": "mtu",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": "{{ speed | replace(\"-1\", \"\") | notavailable(\"-\") }}",
+          "cellTemplateName": "template",
+          "flexGrow": 1,
+          "hidden": true,
+          "name": "Speed",
+          "prop": "speed",
+          "sortable": true
+        },
+        {
+          "cellTemplateName": "checkIcon",
+          "flexGrow": 1,
+          "name": "Link",
+          "prop": "link",
+          "sortable": true
+        }
+      ],
+      "sorters": [
+        {
+          "dir": "asc",
+          "prop": "devicefile"
+        }
+      ],
+      "store": {
+        "proxy": {
+          "get": {
+            "method": "enumerateDevicesList",
+            "params": {
+              "limit": -1,
+              "start": 0
+            }
+          },
+          "service": "Network"
+        }
+      }
+    },
+    "description": "Displays information about the network interfaces in a table.",
+    "id": "85bc79a2-f7f5-11e4-a5ad-0002b3a176b4",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "title": "Network Interfaces",
+    "type": "datatable"
+  },
+  {
+    "chart": {
+      "dataConfig": [
+        {
+          "backgroundColor": "#5dacdf",
+          "label": "Utilization",
+          "prop": "utilization"
+        }
+      ],
+      "displayValue": true,
+      "label": {
+        "formatter": "template",
+        "formatterConfig": "{{ value | tofixed(1) }}%"
+      },
+      "max": 100,
+      "maxHeight": "150px",
+      "min": 0,
+      "request": {
+        "method": "getCpuStats",
+        "service": "System"
+      },
+      "type": "gauge"
+    },
+    "id": "9984d6cc-741b-4fda-85bf-fc6471a61e97",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 5000,
+    "title": "CPU Utilization",
+    "type": "chart"
+  },
+  {
+    "description": "Displays the system time.",
+    "id": "5e41d045-bd91-4300-9af3-52ef5f4715df",
+    "title": "System Time",
+    "type": "value",
+    "value": {
+      "icon": "clock",
+      "request": {
+        "method": "getInformation",
+        "service": "System"
+      },
+      "title": "System time",
+      "value": "{{ time }}"
+    }
+  },
+  {
+    "description": "Displays the system uptime.",
+    "id": "3cdbc4c4-0678-425a-8269-04d25d397365",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 60000,
+    "title": "Uptime",
+    "type": "value",
+    "value": {
+      "icon": "clock",
+      "request": {
+        "method": "getInformation",
+        "service": "System"
+      },
+      "title": "Uptime",
+      "value": "{{ (moment('X') - uptime) | localedate('relative', true) }}"
+    }
+  },
+  {
+    "description": "Displays information about the services in a grid.",
+    "grid": {
+      "item": {
+        "class": "omv-text-center omv-text-nowrap {% if running %}omv-background-color-pair-success{% else %}omv-background-color-pair-error{% endif %}",
+        "content": "{{ title }}",
+        "tooltip": "{% if running %}{{ \"Running\" | translate }}{% else %}{{ \"Not running\" | translate }}{% endif %}"
+      },
+      "store": {
+        "filters": [
+          {
+            "arg0": {
+              "prop": "enabled"
+            },
+            "operator": "truthy"
+          }
+        ],
+        "proxy": {
+          "get": {
+            "method": "getStatus",
+            "params": {
+              "limit": -1,
+              "start": 0
+            }
+          },
+          "service": "Services"
+        },
+        "sorters": [
+          {
+            "dir": "asc",
+            "prop": "title"
+          }
+        ]
+      }
+    },
+    "id": "1788ba1e-8bbe-11eb-8e2b-a3943d9b5d3e",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 10000,
+    "title": "Services",
+    "type": "grid"
+  },
+  {
+    "description": "Displays the temperature of all disk devices.",
+    "grid": {
+      "item": {
+        "class": "omv-cursor-pointer omv-text-center omv-text-nowrap omv-background-color-selected-button",
+        "content": "{{ canonicaldevicefile }}<br>{{ temperature | notavailable }}{% if temperature %}\u00b0C{% endif %}",
+        "tooltip": "{{ devicefile }}",
+        "url": "/storage/smart/devices/details/{{ devicefile | encodeuricomponent }}"
+      },
+      "store": {
+        "proxy": {
+          "get": {
+            "method": "getListBg",
+            "params": {
+              "limit": -1,
+              "start": 0
+            },
+            "task": true
+          },
+          "service": "Smart"
+        },
+        "sorters": [
+          {
+            "dir": "asc",
+            "prop": "devicefile"
+          }
+        ]
+      }
+    },
+    "id": "7c088bf6-fc6f-4592-9308-3d2e760e0491",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 60000,
+    "title": "Disk Temperatures",
+    "type": "grid"
+  },
+  {
+    "datatable": {
+      "columns": [
+        {
+          "flexGrow": 2,
+          "name": "Service",
+          "prop": "title",
+          "sortable": true
+        },
+        {
+          "cellTemplateName": "checkIcon",
+          "flexGrow": 1,
+          "name": "Enabled",
+          "prop": "enabled",
+          "sortable": true
+        },
+        {
+          "cellTemplateName": "checkIcon",
+          "flexGrow": 1,
+          "name": "Running",
+          "prop": "running",
+          "sortable": true
+        }
+      ],
+      "sorters": [
+        {
+          "dir": "asc",
+          "prop": "title"
+        }
+      ],
+      "store": {
+        "proxy": {
+          "get": {
+            "method": "getStatus"
+          },
+          "service": "Services"
+        }
+      }
+    },
+    "description": "Displays information about the services in a table.",
+    "id": "c93898cc-df13-11ea-8f71-0b7e6b4aeb13",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "title": "Services",
+    "type": "datatable"
+  },
+  {
+    "description": "Indicates whether updates are available.",
+    "id": "725881a1-e0d4-4f59-8efd-acf5398ebfb0",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "reloadPeriod": 120000,
+    "title": "Updates Available",
+    "type": "value",
+    "value": {
+      "icon": "mdi:download",
+      "request": {
+        "method": "getInformation",
+        "service": "System"
+      },
+      "title": "Updates available",
+      "url": "/system/updatemgmt/updates",
+      "value": "{{ availablePkgUpdates | isequal(0) | not | yesno }}"
+    }
+  },
+  {
+    "id": "e2ed9a54-df38-11ea-8976-7786e66d5f43",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "rrd": {
+      "name": "cpu-0-hour.png"
+    },
+    "title": "CPU",
+    "type": "rrd"
+  },
+  {
+    "chart": {
+      "dataConfig": [
+        {
+          "backgroundColor": "#ff3b30",
+          "label": "Used",
+          "prop": "memUsed"
+        },
+        {
+          "backgroundColor": "#4cd964",
+          "label": "Free",
+          "prop": "memAvailable"
+        }
+      ],
+      "label": {
+        "display": true,
+        "formatter": "template",
+        "formatterConfig": "{{ value | binaryunit }}"
+      },
+      "maxHeight": "150px",
+      "maxWidth": "150px",
+      "request": {
+        "method": "getInformation",
+        "service": "System",
+        "transform": {
+          "memUsed": "{{ memTotal - memAvailable }}"
+        }
+      },
+      "type": "advanced-doughnut"
+    },
+    "id": "20ac67db-b6b5-429c-a304-9a1a4fbb9ea9",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "title": "Memory",
+    "type": "chart"
+  },
+  {
+    "datatable": {
+      "columns": [
+        {
+          "flexGrow": 1,
+          "name": "Device",
+          "prop": "canonicaldevicefile",
+          "sortable": true
+        },
+        {
+          "flexGrow": 1,
+          "hidden": true,
+          "name": "Label",
+          "prop": "label",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": "{{ available | tobytes | binaryunit | notavailable(\"-\") }}",
+          "cellTemplateName": "template",
+          "flexGrow": 1,
+          "name": "Available",
+          "prop": "available",
+          "sortable": true
+        },
+        {
+          "cellTemplateConfig": {
+            "text": "{{ used | tobytes | binaryunit | notavailable(\"-\") }}",
+            "warningThreshold": "{{ usagewarnthreshold | default(0) }}"
+          },
+          "cellTemplateName": "progressBar",
+          "flexGrow": 1,
+          "name": "Used",
+          "prop": "percentage",
+          "sortable": true
+        }
+      ],
+      "sorters": [
+        {
+          "dir": "asc",
+          "prop": "canonicaldevicefile"
+        }
+      ],
+      "store": {
+        "proxy": {
+          "get": {
+            "method": "enumerateMountedFilesystems"
+          },
+          "service": "FileSystemMgmt"
+        }
+      }
+    },
+    "description": "Displays information about the file systems in a table.",
+    "id": "1dc0ac9a-df14-11ea-8342-6fcac5f2e571",
+    "permissions": {
+      "role": [
+        "admin"
+      ]
+    },
+    "title": "File Systems",
+    "type": "datatable"
+  }
+]
