@@ -1,0 +1,24 @@
+server {
+    listen 443 ssl;
+    # SSL configuration
+    ssl_certificate /etc/ssl/myhub/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/myhub/nginx-selfsigned.key;
+    # Proxy pass to the backend server
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_verify off;  # Disable SSL verification if needed
+    }
+
+    # Error log path
+    error_log /var/log/nginx/example.com_error.log;
+    access_log /var/log/nginx/example.com_access.log;
+}
+
+server {
+    listen 80;
+return 301 https://$http_host$request_uri;
+}
