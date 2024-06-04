@@ -46,8 +46,8 @@ server {
         include fastcgi.conf;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
-    listen *:9090 default_server;
-    listen [::]:9090 default_server;
+    listen *:9090 ssl;
+    listen [::]:9090 ssl;
     include /etc/nginx/openmediavault-webgui.d/*.conf;
 }
 server {
