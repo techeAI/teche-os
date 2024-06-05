@@ -2,14 +2,15 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'	
-        DOCKER_IMAGE_NAME = 'techeai/techedash'
+        DOCKER_IMAGE_NAME = 'techeai/techeos'
         DOCKER_IMAGE_TAG = 'latest'
         DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
     }
     stages {
         stage('Clone Repository') {
             steps {
-                 git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
+                git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
+                rm -rf .next
                 sh 'cp .env.example .env'
                 sh 'yarn install'
                 sh 'yarn build'
