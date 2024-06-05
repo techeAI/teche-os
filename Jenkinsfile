@@ -10,7 +10,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
-                rm -rf .next
+                sh 'rm -rf .next'
                 sh 'cp .env.example .env'
                 sh 'yarn install'
                 sh 'yarn build'
