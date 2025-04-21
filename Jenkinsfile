@@ -1,37 +1,53 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18'
+            args '-u root' // Optional: allows Docker if Docker is mounted inside agent
+        }
+    }
+
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'	
         DOCKER_IMAGE_NAME = 'techeai/techeos'
         DOCKER_IMAGE_TAG = 'latest'
-        DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
     }
+
     stages {
+        stage('Set Date Tag') {
+            steps {
+                script {
+                    // Set DATE_TAG dynamically in script context
+                    env.DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
+                }
+            }
+        }
+
         stage('Clone Repository') {
             steps {
                 git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
                 sh 'rm -rf .next'
                 sh 'cp .env.example .env'
+                sh 'corepack enable'
                 sh 'yarn install'
                 sh 'yarn build'
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 script {
                     def image = docker.build("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
-                    sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${DOCKER_IMAGE_NAME}:${DATE_TAG}"
+                    sh "docker tag ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} ${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}"
                 }
             }
         }
+
         stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_HUB_CREDENTIALS_ID) {
-                        def dateimage = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}")
-                        dateimage.push()
-                        def image = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
-                        image.push()
+                        docker.image("${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}").push()
+                        docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}").push()
                     }
                 }
             }
