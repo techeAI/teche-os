@@ -6,7 +6,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'	
         DOCKER_IMAGE_NAME = 'techeai/techeos'
-        DOCKER_IMAGE_TAG = 'latest'
+        DOCKER_IMAGE_TAG = 'delme'
     }
 
     stages {
