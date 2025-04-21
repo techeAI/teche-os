@@ -1,11 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-u root' // Optional: allows Docker if Docker is mounted inside agent
-        }
+    agent any
+    tools {
+        nodejs 'NodeJS-dashboard' // <-- Name from the Global Tool Configuration
     }
-
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'	
         DOCKER_IMAGE_NAME = 'techeai/techeos'
