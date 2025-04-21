@@ -7,20 +7,6 @@ pipeline {
         DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
     }
     stages {
-        stage('Setup') {
-            steps {
-                sh '''
-                curl -fsSL https://deb.nodesource.com/setup_18.x |bash -
-                apt-get install -y nodejs
-                npm install -g yarn
-                '''
-          }
-        }
-        stage('Install dependencies') {
-          steps {
-            sh 'yarn install'
-          }
-        }
         stage('Clone Repository') {
             steps {
                 git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
