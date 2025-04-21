@@ -16,7 +16,7 @@ pipeline {
                     env.GIT_BRANCH_NAME = env.GIT_BRANCH ?: sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                     env.DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
 
-                    def allowedBranches = ['development', 'test', 'preprod', 'production']
+                    def allowedBranches = ['development', 'test', 'preprod', 'main']
                     if (!allowedBranches.contains(env.GIT_BRANCH_NAME)) {
                         currentBuild.result = 'NOT_BUILT'
                         error("Skipping build for branch: ${env.GIT_BRANCH_NAME}")
@@ -55,7 +55,7 @@ pipeline {
                         docker.image("${env.DOCKER_IMAGE_NAME}:${env.GIT_BRANCH_NAME}").push()
                         docker.image("${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}").push()
 
-                        if (env.GIT_BRANCH_NAME == 'production') {
+                        if (env.GIT_BRANCH_NAME == 'main') {
                             docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}").push()
                         }
                     }
