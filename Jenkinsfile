@@ -7,15 +7,6 @@ pipeline {
         DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
     }
     stages {
-        stage('Clone Repository') {
-            steps {
-                git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
-                sh 'rm -rf .next'
-                sh 'cp .env.example .env'
-                sh 'yarn install'
-                sh 'yarn build'
-            }
-        }
         stage('Setup') {
             steps {
                 sh '''
@@ -29,6 +20,15 @@ pipeline {
           steps {
             sh 'yarn install'
           }
+        }
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/techeAI/teche-os.git', branch: 'main'
+                sh 'rm -rf .next'
+                sh 'cp .env.example .env'
+                sh 'yarn install'
+                sh 'yarn build'
+            }
         }
         stage('Build Docker Image') {
             steps {
