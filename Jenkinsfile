@@ -16,6 +16,20 @@ pipeline {
                 sh 'yarn build'
             }
         }
+        stage('Setup') {
+            steps {
+                sh '''
+                curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+                sudo apt-get install -y nodejs
+                sudo npm install -g yarn
+                '''
+          }
+        }
+        stage('Install dependencies') {
+          steps {
+            sh 'yarn install'
+          }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
