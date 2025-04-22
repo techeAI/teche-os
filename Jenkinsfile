@@ -47,7 +47,7 @@ pipeline {
                         sonar-scanner \
                         -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
                         -Dsonar.sources=. \
-                        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+                        -Dsonar.javascript.lcov.reportPaths=lcov.info \
                         -Dsonar.host.url=$SONAR_HOST_URL
                     """
                 }
