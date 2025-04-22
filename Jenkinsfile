@@ -69,7 +69,7 @@ pipeline {
                 script {
                     sh """
                 trivy image --severity HIGH,CRITICAL ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} || echo "Trivy scan completed with issues, but build will continue."
-                        }
+                        
                     """
                 }
             }
