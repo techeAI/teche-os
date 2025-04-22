@@ -7,7 +7,7 @@ pipeline {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'
         DOCKER_IMAGE_NAME = 'techeai/techedash'
         DOCKER_IMAGE_TAG = 'latest'
-        SONARQUBE_ENV = 'SonarQube-Biztech' // Replace with your actual SonarQube installation name in Jenkins
+        SONARQUBE_ENV = 'SonarQube-Biztech'
         SONAR_PROJECT_KEY = 'Teche-DASHBOARD'
     }
 
@@ -60,6 +60,19 @@ pipeline {
                     def image = docker.build("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
                     sh "docker tag ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} ${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}"
                     sh "docker tag ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} ${env.DOCKER_IMAGE_NAME}:${env.GIT_BRANCH_NAME}"
+                }
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                script {
+                    sh """
+                        trivy image --exit-code 1 --severity HIGH,CRITICAL ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} || {
+                            echo "Trivy scan failed. Vulnerabilities found.";
+                            exit 1;
+                        }
+                    """
                 }
             }
         }
