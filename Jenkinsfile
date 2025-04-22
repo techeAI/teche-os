@@ -7,6 +7,8 @@ pipeline {
         DOCKER_HUB_CREDENTIALS_ID = 'teche-ai-dockerhub'
         DOCKER_IMAGE_NAME = 'techeai/techedash'
         DOCKER_IMAGE_TAG = 'latest'
+        SONARQUBE_ENV = 'SonarQube-Biztech' // Replace with your actual SonarQube installation name in Jenkins
+        SONAR_PROJECT_KEY = 'Teche-DASHBOARD'
     }
 
     stages {
@@ -35,6 +37,20 @@ pipeline {
                 sh 'corepack enable'
                 sh 'yarn install'
                 sh 'yarn build'
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv("${env.SONARQUBE_ENV}") {
+                    sh """
+                        sonar-scanner \
+                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
+                        -Dsonar.sources=. \
+                        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+                        -Dsonar.host.url=$SONAR_HOST_URL
+                    """
+                }
             }
         }
 
