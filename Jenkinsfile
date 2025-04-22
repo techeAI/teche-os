@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     env.GIT_BRANCH_NAME = env.GIT_BRANCH ?: sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                    env.DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
+                    env.DATE_TAG = new Date().format('yyyyMMdd-HH-mm')
 
                     def allowedBranches = ['development', 'test', 'preprod', 'main']
                     if (!allowedBranches.contains(env.GIT_BRANCH_NAME)) {
