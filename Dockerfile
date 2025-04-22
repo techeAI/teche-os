@@ -1,4 +1,5 @@
 FROM node:20.2.0-slim
+RUN apt update -y && apt upgrade -y
 WORKDIR /app
 
 # Define node.js environment variables
